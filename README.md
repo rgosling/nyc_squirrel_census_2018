@@ -1,1 +1,7 @@
 # nyc_squirrel_census_2018
+Example on how to create EXTERNAL Tables in Synapse Analytics
+
+The data is from a 2018 census of squirrels in Central Park 
+https://data.cityofnewyork.us/Environment/2018-Central-Park-Squirrel-Census-Squirrel-Data/vfnx-vebw
+
+
