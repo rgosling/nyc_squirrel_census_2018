@@ -8,7 +8,7 @@
 -- //  The data came from the 2018 Squirrel Census in Central Park, NYC
 -- //  https://data.cityofnewyork.us/Environment/2018-Central-Park-Squirrel-Census-Squirrel-Data/vfnx-vebw
 -- // 
--- //  Uses Parquet file (squirrels_org.parquet) that's included in the zip file
+-- //  Uses csv file that's included in the zip file
 -- //  You need to push this file onto the Azure Data Lake storage with    
 -- //  Azure Storage Explorer or something similar.
 -- //   
