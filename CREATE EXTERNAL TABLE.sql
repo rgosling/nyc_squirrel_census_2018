@@ -21,7 +21,7 @@
 --- Master DB Key
 --========================================================================================================
 --DROP MASTER KEY ENCRYPTION BY PASSWORD
-CREATE MASTER KEY ENCRYPTION BY PASSWORD = '<your key goes here>'; 
+CREATE MASTER KEY ENCRYPTION BY PASSWORD = 'XmXv2fmsBfZzc6^*&t2m^8n^HH3m7E'; 
 GO
 --========================================================================================================
 -- Database scoped crendential
@@ -34,8 +34,8 @@ GO
 --========================================================================================================
 --DROP EXTERNAL DATA SOURCE ext_datasource_with_abfss 
 CREATE EXTERNAL DATA SOURCE ext_datasource_with_abfss
-WITH (TYPE = hadoop,
-LOCATION = 'abfss://bronze@<youraccount>.dfs.core.windows.net',
+WITH (
+LOCATION = 'abfss://bronze@argonadls01.dfs.core.windows.net/',
 CREDENTIAL = msi_cred); 
 GO
 --========================================================================================================
@@ -82,10 +82,10 @@ GO
 --========================================================================================================
 -- Create the External Table
 --========================================================================================================
-IF EXISTS(SELECT * FROM sys.tables WHERE SCHEMA_NAME(schema_id) LIKE 'stg' AND name like 'squirrel_census_parquet')  
-   DROP EXTERNAL TABLE stg.squirrel_census_parquet; 
+IF EXISTS(SELECT * FROM sys.tables WHERE SCHEMA_NAME(schema_id) LIKE 'stg' AND name like 'squirrel_census_csv')  
+   DROP EXTERNAL TABLE dbo.squirrel_census_csv; 
   --
-CREATE EXTERNAL TABLE stg.squirrel_census_parquet
+CREATE EXTERNAL TABLE dbo.squirrel_census_csv
 (
      x                         varchar(20)
     ,y                         varchar(20)
@@ -121,12 +121,12 @@ CREATE EXTERNAL TABLE stg.squirrel_census_parquet
 )
 WITH
 (
-  LOCATION = 'squirrel_census_2018_parquet', -- Top of the file structure for the table
+  LOCATION = 'NYCSquirrelCensus2018/', -- Top of the file structure for the table
   DATA_SOURCE = ext_datasource_with_abfss,
-  FILE_FORMAT = parquet_fmt
+  FILE_FORMAT = csv_skip1
 )
 GO
 --
-SELECT TOP 500 * FROM stg.squirrel_census_parquet
+SELECT TOP 500 * FROM squirrel_census_csv
 
 --
